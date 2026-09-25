@@ -14,6 +14,9 @@ const photos = [
   "/images4.jpg",
   "/images5.jpg",
   "/images6.jpg",
+  "/images7.jpg",
+  "/images8.jpg",
+  
 ];
 
 // Floating Hearts Data
