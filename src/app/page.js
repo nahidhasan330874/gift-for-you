@@ -73,7 +73,7 @@ export default function Home() {
       {hearts.map(([left, size, duration], i) => (
         <span
           key={i}
-          className="heart text-pink-300"
+          className="heart text-pink-100"
           style={{
             left: `${left}%`,
             fontSize: `${size}px`,
@@ -81,7 +81,7 @@ export default function Home() {
             animationDelay: `${i * 0.4}s`,
           }}
         >
-          ❤
+          ❤🎀
         </span>
       ))}
 
@@ -162,7 +162,7 @@ export default function Home() {
                 <Button
                   size="md"
                   radius="full"
-                  className="h-11 w-full bg-gradient-to-r from-pink-500 via-fuchsia-500 to-purple-500 px-6 text-sm font-bold text-white shadow-[0_0_30px_rgba(236,72,153,0.35)] sm:h-12 sm:text-base"
+                  className="h-11 w-full bg-gradient-to-r rounded-2xl from-pink-500 via-fuchsia-500 to-purple-500 px-6 text-sm font-bold text-white shadow-[0_0_30px_rgba(236,72,153,0.35)] sm:h-12 sm:text-base"
                   endContent={<Heart size={17} />}
                 >
                   Open Your Gift

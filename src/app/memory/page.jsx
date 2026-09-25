@@ -1,4 +1,4 @@
-"use client";
+ "use client";
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
@@ -16,20 +16,58 @@ const photos = [
   "/images6.jpg",
 ];
 
+// Floating Hearts Data
+const hearts = [
+  { left: "8%", delay: 0, duration: 6, size: 18 },
+  { left: "22%", delay: 1, duration: 7, size: 24 },
+  { left: "38%", delay: 2, duration: 8, size: 20 },
+  { left: "55%", delay: 0.5, duration: 6.5, size: 26 },
+  { left: "72%", delay: 1.5, duration: 7.5, size: 22 },
+  { left: "88%", delay: 3, duration: 8, size: 18 },
+];
+
 export default function MemoryPage() {
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % photos.length);
-    }, 1500);
+    }, 1500); // 1.5 sec
 
     return () => clearInterval(interval);
   }, []);
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#070311] px-4 py-10 text-white">
-      <div className="aurora" />
+      {/* Aurora */}
+      <div className="aurora absolute inset-0" />
+
+      {/* Floating Hearts */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        {hearts.map((heart, i) => (
+          <motion.div
+            key={i}
+            className="absolute bottom-[-40px]"
+            style={{ left: heart.left }}
+            initial={{ y: 0, opacity: 0, x: 0 }}
+            animate={{
+              y: -900,
+              opacity: [0, 0.9, 0.8, 0],
+              x: [0, -15, 15, -10, 0],
+              rotate: [0, -20, 20, 0],
+            }}
+            transition={{
+              duration: heart.duration,
+              delay: heart.delay,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+          >
+            🌸
+             
+          </motion.div>
+        ))}
+      </div>
 
       <div className="relative z-10 mx-auto max-w-md">
         {/* Header */}
@@ -41,7 +79,7 @@ export default function MemoryPage() {
         >
           <Sparkles size={25} className="mx-auto mb-3 text-yellow-300" />
 
-          <h1 className="glow text-3xl font-black text-pink-300">
+          <h1 className="text-3xl font-black text-pink-300">
             Beautiful Memories ✨
           </h1>
 
@@ -51,9 +89,9 @@ export default function MemoryPage() {
           </p>
         </motion.div>
 
-        {/* Animated Photo */}
+        {/* Photo Slider */}
         <div className="relative mt-8">
-          <Card className="glass overflow-hidden rounded-[25px] border border-pink-400/20">
+          <Card className="overflow-hidden rounded-[25px] border border-pink-400/20 bg-white/10 backdrop-blur-xl">
             <div className="relative h-[430px] w-full overflow-hidden">
               <AnimatePresence mode="wait">
                 <motion.div
@@ -61,15 +99,15 @@ export default function MemoryPage() {
                   initial={{ opacity: 0, scale: 1.08 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.96 }}
-                  transition={{ duration: 0.45 }}
+                  transition={{ duration: 0.4 }}
                   className="absolute inset-0"
                 >
                   <Image
                     src={photos[current]}
-                    alt={`Hafiza memory ${current + 1}`}
+                    alt={`Memory ${current + 1}`}
                     fill
                     priority
-                    sizes="(max-width: 768px) 100vw, 500px"
+                    sizes="100vw"
                     className="object-cover"
                   />
 
@@ -84,7 +122,7 @@ export default function MemoryPage() {
           </Card>
         </div>
 
-        {/* Small dots */}
+        {/* Dots */}
         <div className="mt-4 flex justify-center gap-1.5">
           {photos.map((_, i) => (
             <motion.span
@@ -103,17 +141,13 @@ export default function MemoryPage() {
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
           className="mt-10"
         >
-          <Card className="glass rounded-[25px]">
+          <Card className="rounded-[25px] bg-white/10 backdrop-blur-xl">
             <div className="p-6 text-center">
               <motion.div
                 animate={{ scale: [1, 1.15, 1] }}
-                transition={{
-                  duration: 1.5,
-                  repeat: Infinity,
-                }}
+                transition={{ duration: 1.5, repeat: Infinity }}
                 className="mb-3 flex justify-center"
               >
                 <Heart size={30} className="fill-pink-500 text-pink-500" />
@@ -146,9 +180,8 @@ export default function MemoryPage() {
             <Button
               radius="full"
               size="sm"
-              className="border-none p-3 border-pink-400/40 bg-gradient-to-r from-pink-500/20 to-fuchsia-500/20 px-5 text-sm font-semibold text-white shadow-[0_0_20px_rgba(236,72,153,0.2)] backdrop-blur-md hover:shadow-[0_0_30px_rgba(236,72,153,0.45)]"
+              className="bg-pink-500/20 px-5 text-white backdrop-blur-md p-2 rounded-full hover:bg-pink-500/30 focus:bg-pink-500/30"
               startContent={<ArrowLeft size={16} />}
-              endContent={<span className="text-pink-300">✦</span>}
             >
               Back Home
             </Button>
