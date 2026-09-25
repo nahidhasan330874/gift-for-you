@@ -1,5 +1,6 @@
-import { Geist, Geist_Mono } from "next/font/google";
+ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import BackgroundMusic from "@/components/BackgroundMusic";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -12,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Happy Birthday Hafiza",
+  title: "Happy Birthday Hafiza 🎂",
   description: "A special birthday gift ❤️",
 };
 
@@ -22,7 +23,10 @@ export default function RootLayout({ children }) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col bg-black">
+        <BackgroundMusic />
+        {children}
+      </body>
     </html>
   );
 }

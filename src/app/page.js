@@ -6,7 +6,7 @@ import { Button, Card } from "@heroui/react";
 import { Sparkles, Heart } from "lucide-react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import GiftOpening from "@/componant/GiftOpening";
+import GiftOpening from "@/components/GiftOpening";
 
 const starsData = [
   [3, 8, 12, 0.2],
@@ -81,7 +81,7 @@ export default function Home() {
             animationDelay: `${i * 0.4}s`,
           }}
         >
-          ❤🎀
+          🎂
         </span>
       ))}
 
