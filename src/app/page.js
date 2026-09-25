@@ -8,6 +8,8 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import GiftOpening from "@/components/GiftOpening";
 
+
+
 const starsData = [
   [3, 8, 12, 0.2],
   [2, 18, 30, 1.1],
@@ -68,6 +70,7 @@ export default function Home() {
           }}
         />
       ))}
+
 
       {/* Floating Hearts */}
       {hearts.map(([left, size, duration], i) => (
